@@ -1,0 +1,16 @@
+{
+  "name": "tramites",
+  "version": "1.0.0",
+  "description": "Aplicación web para dar seguimiento a trámites y permisos",
+  "private": true,
+  "scripts": {
+    "empaquetar": "node empaquetar.js"
+  },
+  "devDependencies": {
+    "archiver": "^7.0.1",
+    "clean-css": "^5.3.3",
+    "html-minifier-terser": "^7.2.0",
+    "sharp": "^0.33.5",
+    "terser": "^5.36.0"
+  }
+}
