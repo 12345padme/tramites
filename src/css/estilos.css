@@ -1,0 +1,502 @@
+/* ==========================================================================
+   Seguimiento de trámites — Hoja de estilos
+   --------------------------------------------------------------------------
+   1. Variables de diseño
+   2. Base
+   3. Encabezado
+   4. Indicadores de resumen
+   5. Paneles y formulario
+   6. Filtros y listado
+   7. Aviso y pie de página
+   8. Adaptación a pantallas pequeñas
+   ========================================================================== */
+
+/* 1. Variables de diseño ------------------------------------------------- */
+:root {
+  --papel: #f4f1ea;
+  --tarjeta: #fffdf8;
+  --tinta: #1d2b2a;
+  --tinta-suave: #5c6b68;
+  --linea: #ddd6c6;
+  --verde: #1f5c50;
+  --verde-oscuro: #143f37;
+  --ambar: #b7791f;
+  --ambar-fondo: #fbf0d9;
+  --rojo: #a63d2f;
+  --rojo-fondo: #f8e4df;
+  --azul: #2f5d8a;
+  --azul-fondo: #e3edf6;
+  --listo-fondo: #e1efe6;
+  --gris-fondo: #ebe7dc;
+  --radio: 10px;
+  --fuente-texto: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --fuente-titulo: Georgia, "Times New Roman", serif;
+  --fuente-dato: Consolas, "Courier New", monospace;
+}
+
+/* 2. Base ---------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--fuente-texto);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+select,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ambar);
+  outline-offset: 2px;
+}
+
+/* 3. Encabezado ---------------------------------------------------------- */
+.encabezado {
+  position: relative;
+  overflow: hidden;
+  background: var(--verde-oscuro);
+  color: #f4f1ea;
+}
+
+.encabezado__banner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+}
+
+.encabezado__contenido {
+  position: relative;
+  z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 24px 72px;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.marca__logo {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+}
+
+.marca__sobretitulo {
+  font-family: var(--fuente-dato);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.marca__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.encabezado__texto {
+  max-width: 46ch;
+  margin-top: 16px;
+  font-size: 1.05rem;
+  opacity: 0.92;
+}
+
+/* 4. Indicadores de resumen ---------------------------------------------- */
+.pagina {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px 48px;
+}
+
+.resumen {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: -40px;
+}
+
+.indicador {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 16px 20px;
+  background: var(--tarjeta);
+  border: 1px solid var(--linea);
+  border-top: 4px solid var(--verde);
+  border-radius: var(--radio);
+  box-shadow: 0 6px 18px rgba(29, 43, 42, 0.08);
+}
+
+.indicador--alerta {
+  border-top-color: var(--rojo);
+}
+
+.indicador--listo {
+  border-top-color: var(--ambar);
+}
+
+.indicador__numero {
+  font-family: var(--fuente-titulo);
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.indicador__etiqueta {
+  font-size: 0.85rem;
+  color: var(--tinta-suave);
+}
+
+/* 5. Paneles y formulario ------------------------------------------------ */
+.columnas {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 24px;
+  align-items: start;
+  margin-top: 28px;
+}
+
+.panel {
+  padding: 24px;
+  background: var(--tarjeta);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+}
+
+.panel__cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.panel__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.formulario {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.campo {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.campo__etiqueta {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--tinta-suave);
+}
+
+.campo-doble {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: 12px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="search"],
+select {
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 8px 10px;
+  background: #fff;
+  border: 1px solid var(--linea);
+  border-radius: 8px;
+}
+
+input::placeholder {
+  color: #9aa39f;
+}
+
+.formulario__error {
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  color: var(--rojo);
+  background: var(--rojo-fondo);
+  border-radius: 8px;
+}
+
+.boton {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.boton--primario {
+  background: var(--verde);
+  color: #fff;
+  font-weight: 600;
+}
+
+.boton--primario:hover {
+  background: var(--verde-oscuro);
+}
+
+/* 6. Filtros y listado --------------------------------------------------- */
+.buscador {
+  max-width: 220px;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 8px;
+}
+
+.filtro {
+  padding: 6px 14px;
+  background: transparent;
+  border: 1px solid var(--linea);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.filtro:hover {
+  border-color: var(--verde);
+}
+
+.filtro--activo {
+  background: var(--verde);
+  border-color: var(--verde);
+  color: #fff;
+}
+
+.lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tramite {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 0;
+  border-top: 1px solid var(--linea);
+}
+
+.tramite__nombre {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.tramite__detalle {
+  font-size: 0.88rem;
+  color: var(--tinta-suave);
+  overflow-wrap: anywhere;
+}
+
+.tramite__fecha {
+  text-align: right;
+  font-family: var(--fuente-dato);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.tramite__plazo {
+  display: block;
+  font-family: var(--fuente-texto);
+  font-size: 0.8rem;
+  color: var(--tinta-suave);
+}
+
+.tramite__plazo--urgente {
+  color: var(--rojo);
+  font-weight: 600;
+}
+
+.tramite__estatus {
+  width: auto;
+  min-height: 36px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.estatus--pendiente {
+  background: var(--gris-fondo);
+  border-color: var(--gris-fondo);
+}
+
+.estatus--proceso {
+  background: var(--azul-fondo);
+  border-color: var(--azul-fondo);
+  color: var(--azul);
+}
+
+.estatus--observado {
+  background: var(--ambar-fondo);
+  border-color: var(--ambar-fondo);
+  color: #8a5a12;
+}
+
+.estatus--concluido {
+  background: var(--listo-fondo);
+  border-color: var(--listo-fondo);
+  color: var(--verde);
+}
+
+.tramite__eliminar {
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--tinta-suave);
+  cursor: pointer;
+}
+
+.tramite__eliminar:hover {
+  border-color: var(--rojo);
+  color: var(--rojo);
+}
+
+.vacio {
+  padding: 32px 0 8px;
+  text-align: center;
+  color: var(--tinta-suave);
+}
+
+/* 7. Aviso y pie de página ----------------------------------------------- */
+.aviso {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: calc(100% - 32px);
+  padding: 12px 16px;
+  background: var(--tinta);
+  color: #fff;
+  border-radius: var(--radio);
+  transform: translateX(-50%);
+}
+
+.aviso[hidden],
+.vacio[hidden],
+.formulario__error[hidden] {
+  display: none;
+}
+
+.aviso__boton {
+  padding: 4px 10px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.pie {
+  padding: 24px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--tinta-suave);
+}
+
+/* 8. Adaptación a pantallas pequeñas ------------------------------------- */
+@media (max-width: 900px) {
+  .columnas {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .encabezado__contenido {
+    padding: 28px 16px 64px;
+  }
+
+  .pagina {
+    padding: 0 16px 32px;
+  }
+
+  .resumen {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .panel {
+    padding: 18px;
+  }
+
+  .buscador {
+    max-width: none;
+  }
+
+  .tramite {
+    grid-template-columns: 1fr auto;
+    gap: 8px 12px;
+  }
+
+  .tramite__info {
+    grid-column: 1 / -1;
+  }
+
+  .tramite__fecha {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+
+  .tramite__plazo {
+    display: inline;
+    margin-left: 8px;
+  }
+
+  .tramite__estatus {
+    justify-self: start;
+  }
+}

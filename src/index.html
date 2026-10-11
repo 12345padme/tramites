@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tablero para dar seguimiento a trámites y permisos: estatus, dependencia y fecha límite.">
+  <title>Seguimiento de trámites</title>
+  <link rel="icon" href="img/logo.png" type="image/png">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- Encabezado con logotipo y banner -->
+  <header class="encabezado">
+    <div class="encabezado__contenido">
+      <div class="marca">
+        <img class="marca__logo" src="img/logo.png" alt="" width="56" height="56">
+        <div>
+          <p class="marca__sobretitulo">Tablero de control</p>
+          <h1 class="marca__titulo">Seguimiento de trámites</h1>
+        </div>
+      </div>
+      <p class="encabezado__texto">
+        Registra cada permiso, consulta su estatus y detecta a tiempo los que están por vencer.
+      </p>
+    </div>
+    <img class="encabezado__banner" src="img/banner.png" alt="" width="1200" height="480">
+  </header>
+
+  <main class="pagina">
+
+    <!-- Resumen numérico -->
+    <section class="resumen" aria-label="Resumen de trámites">
+      <div class="indicador">
+        <span class="indicador__numero" id="total-todos">0</span>
+        <span class="indicador__etiqueta">Registrados</span>
+      </div>
+      <div class="indicador">
+        <span class="indicador__numero" id="total-proceso">0</span>
+        <span class="indicador__etiqueta">En proceso</span>
+      </div>
+      <div class="indicador indicador--alerta">
+        <span class="indicador__numero" id="total-vencer">0</span>
+        <span class="indicador__etiqueta">Vencen en 7 días o menos</span>
+      </div>
+      <div class="indicador indicador--listo">
+        <span class="indicador__numero" id="total-concluidos">0</span>
+        <span class="indicador__etiqueta">Concluidos</span>
+      </div>
+    </section>
+
+    <div class="columnas">
+
+      <!-- Formulario de alta -->
+      <section class="panel" aria-labelledby="titulo-formulario">
+        <h2 class="panel__titulo" id="titulo-formulario">Nuevo trámite</h2>
+        <form id="formulario" class="formulario" novalidate>
+          <label class="campo">
+            <span class="campo__etiqueta">Trámite</span>
+            <input type="text" id="campo-nombre" name="nombre" maxlength="80" required
+                   placeholder="Ej. Licencia de uso de suelo">
+          </label>
+          <label class="campo">
+            <span class="campo__etiqueta">Dependencia</span>
+            <input type="text" id="campo-dependencia" name="dependencia" maxlength="60" required
+                   placeholder="Ej. Desarrollo Urbano">
+          </label>
+          <label class="campo">
+            <span class="campo__etiqueta">Proyecto</span>
+            <input type="text" id="campo-proyecto" name="proyecto" maxlength="60" required
+                   placeholder="Ej. Privada Los Almendros">
+          </label>
+          <div class="campo-doble">
+            <label class="campo">
+              <span class="campo__etiqueta">Estatus</span>
+              <select id="campo-estatus" name="estatus">
+                <option value="pendiente">Pendiente</option>
+                <option value="proceso">En proceso</option>
+                <option value="observado">Observado</option>
+                <option value="concluido">Concluido</option>
+              </select>
+            </label>
+            <label class="campo">
+              <span class="campo__etiqueta">Fecha límite</span>
+              <input type="date" id="campo-fecha" name="fecha" required>
+            </label>
+          </div>
+          <p class="formulario__error" id="mensaje-error" role="alert" hidden></p>
+          <button type="submit" class="boton boton--primario">Agregar trámite</button>
+        </form>
+      </section>
+
+      <!-- Listado -->
+      <section class="panel panel--lista" aria-labelledby="titulo-lista">
+        <div class="panel__cabecera">
+          <h2 class="panel__titulo" id="titulo-lista">Trámites registrados</h2>
+          <input type="search" id="buscador" class="buscador" placeholder="Buscar…"
+                 aria-label="Buscar por trámite, dependencia o proyecto">
+        </div>
+
+        <div class="filtros" role="group" aria-label="Filtrar por estatus">
+          <button type="button" class="filtro filtro--activo" data-filtro="todos" aria-pressed="true">Todos</button>
+          <button type="button" class="filtro" data-filtro="pendiente" aria-pressed="false">Pendiente</button>
+          <button type="button" class="filtro" data-filtro="proceso" aria-pressed="false">En proceso</button>
+          <button type="button" class="filtro" data-filtro="observado" aria-pressed="false">Observado</button>
+          <button type="button" class="filtro" data-filtro="concluido" aria-pressed="false">Concluido</button>
+        </div>
+
+        <ul class="lista" id="lista"></ul>
+
+        <div class="vacio" id="vacio" hidden>
+          <img src="img/vacio.png" alt="" width="160" height="120">
+          <p>No hay trámites que coincidan con el filtro.</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="pie">
+    <p>Seguimiento de trámites · versión 1.0.0 · Los datos se guardan en este navegador.</p>
+  </footer>
+
+  <div class="aviso" id="aviso" role="status" hidden>
+    <span id="aviso-texto"></span>
+    <button type="button" class="aviso__boton" id="aviso-deshacer">Deshacer</button>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

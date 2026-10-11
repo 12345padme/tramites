@@ -1,0 +1,2 @@
+# Dependencias de desarrollo (se reinstalan con "npm install")
+node_modules/
